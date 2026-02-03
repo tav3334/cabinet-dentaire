@@ -1,3 +1,151 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    /* Fonts Google - Inter */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    body {
+        @apply font-sans antialiased;
+    }
+}
+
+@layer components {
+    /* Scrollbar personnalisé */
+    .scrollbar-custom::-webkit-scrollbar {
+        @apply w-2;
+    }
+
+    .scrollbar-custom::-webkit-scrollbar-track {
+        @apply bg-gray-100 rounded-full;
+    }
+
+    .scrollbar-custom::-webkit-scrollbar-thumb {
+        @apply bg-gradient-to-b from-purple-400 to-purple-600 rounded-full;
+    }
+
+    .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+        @apply from-purple-500 to-purple-700;
+    }
+
+    /* Glassmorphism effect */
+    .glass {
+        @apply bg-white bg-opacity-70 backdrop-blur-xl;
+    }
+
+    .glass-dark {
+        @apply bg-gray-900 bg-opacity-70 backdrop-blur-xl;
+    }
+
+    /* Gradient text */
+    .gradient-text {
+        @apply bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent;
+    }
+
+    /* Hover lift effect */
+    .hover-lift {
+        @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+    }
+
+    /* Shine animation */
+    @keyframes shine {
+        0% {
+            background-position: -200% center;
+        }
+        100% {
+            background-position: 200% center;
+        }
+    }
+
+    .shine {
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent
+        );
+        background-size: 200% 100%;
+        animation: shine 3s infinite;
+    }
+
+    /* Pulse glow */
+    @keyframes pulse-glow {
+        0%, 100% {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+        50% {
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+        }
+    }
+
+    .pulse-glow {
+        animation: pulse-glow 2s infinite;
+    }
+
+    /* Floating animation */
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .float {
+        animation: float 3s ease-in-out infinite;
+    }
+
+    /* Skeleton loader */
+    .skeleton {
+        @apply relative overflow-hidden bg-gray-200 rounded;
+    }
+
+    .skeleton::after {
+        content: '';
+        @apply absolute inset-0;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.5),
+            transparent
+        );
+        animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(100%);
+        }
+    }
+}
+
+@layer utilities {
+    /* Custom utilities */
+    .text-shadow {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Hide scrollbar */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* Smooth scroll */
+    .smooth-scroll {
+        scroll-behavior: smooth;
+    }
+}

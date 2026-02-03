@@ -4,24 +4,29 @@
 @section('page-title', 'Gestion des patients')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <div>
-        <form action="{{ route('admin.patients.index') }}" method="GET" class="d-flex">
-            <div class="input-group">
-                <input type="text"
-                       name="search"
-                       class="form-control"
-                       placeholder="Rechercher un patient..."
-                       value="{{ request('search') }}">
-                <button class="btn btn-outline-secondary" type="submit">
-                    <i class="bi bi-search"></i>
-                </button>
-            </div>
-        </form>
+<div class="fade-in">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="flex-grow-1 me-3" style="max-width: 400px;">
+            <form action="{{ route('admin.patients.index') }}" method="GET">
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0">
+                        <i class="bi bi-search text-muted"></i>
+                    </span>
+                    <input type="text"
+                           name="search"
+                           class="form-control border-start-0 ps-0"
+                           placeholder="Rechercher un patient..."
+                           value="{{ request('search') }}">
+                    <button class="btn btn-primary" type="submit">
+                        Rechercher
+                    </button>
+                </div>
+            </form>
+        </div>
+        <a href="{{ route('admin.patients.create') }}" class="btn btn-primary">
+            <i class="bi bi-plus-lg me-2"></i>Nouveau patient
+        </a>
     </div>
-    <a href="{{ route('admin.patients.create') }}" class="btn btn-primary">
-        <i class="bi bi-plus-lg me-2"></i>Nouveau patient
-    </a>
 </div>
 
 <div class="card border-0 shadow-sm">
@@ -44,15 +49,15 @@
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
-                                             style="width: 40px; height: 40px;">
+                                        <div class="bg-gradient text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                                             style="width: 48px; height: 48px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); font-weight: 600; font-size: 16px;">
                                             {{ strtoupper(substr($patient->first_name, 0, 1) . substr($patient->last_name, 0, 1)) }}
                                         </div>
                                         <div>
-                                            <strong>{{ $patient->full_name }}</strong>
+                                            <div class="fw-semibold text-dark">{{ $patient->full_name }}</div>
                                             @if($patient->gender)
-                                                <br>
                                                 <small class="text-muted">
+                                                    <i class="bi bi-{{ $patient->gender == 'male' ? 'gender-male' : 'gender-female' }} me-1"></i>
                                                     {{ $patient->gender == 'male' ? 'Homme' : ($patient->gender == 'female' ? 'Femme' : 'Autre') }}
                                                 </small>
                                             @endif

@@ -4,6 +4,14 @@
 @section('page-title', 'Gestion des rendez-vous')
 
 @section('content')
+<!-- En-tête avec bouton -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div></div>
+    <a href="{{ route('admin.appointments.create') }}" class="btn btn-primary">
+        <i class="bi bi-plus-lg me-2"></i>Nouveau rendez-vous
+    </a>
+</div>
+
 <!-- Filtres -->
 <div class="card border-0 shadow-sm mb-4">
     <div class="card-body">

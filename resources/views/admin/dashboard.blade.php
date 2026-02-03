@@ -5,55 +5,79 @@
 
 @section('content')
 <!-- Statistiques -->
-<div class="row g-4 mb-4">
-    <div class="col-md-3">
-        <div class="card stat-card bg-primary text-white">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="text-white-50 mb-1">Rendez-vous aujourd'hui</h6>
-                        <h2 class="mb-0">{{ $stats['today_appointments'] }}</h2>
+<div class="row g-3 mb-4 fade-in">
+    <div class="col-xl-3 col-md-6 col-sm-6">
+        <div class="card stat-card primary">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="stat-icon bg-primary bg-opacity-10 text-primary me-2">
+                        <i class="bi bi-calendar-day"></i>
                     </div>
-                    <i class="bi bi-calendar-day fs-1 text-white-50"></i>
+                    <div class="flex-grow-1">
+                        <p class="text-muted mb-0 small fw-semibold" style="font-size: 11px;">AUJOURD'HUI</p>
+                        <h3 class="mb-0 fw-bold">{{ $stats['today_appointments'] }}</h3>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <span class="text-muted" style="font-size: 12px;">Rendez-vous</span>
+                    <i class="bi bi-arrow-right text-primary"></i>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card stat-card bg-warning">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="text-dark mb-1">En attente</h6>
-                        <h2 class="mb-0 text-dark">{{ $stats['pending_appointments'] }}</h2>
+    <div class="col-xl-3 col-md-6 col-sm-6">
+        <div class="card stat-card warning">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="stat-icon bg-warning bg-opacity-10 text-warning me-2">
+                        <i class="bi bi-hourglass-split"></i>
                     </div>
-                    <i class="bi bi-hourglass-split fs-1 text-dark opacity-50"></i>
+                    <div class="flex-grow-1">
+                        <p class="text-muted mb-0 small fw-semibold" style="font-size: 11px;">EN ATTENTE</p>
+                        <h3 class="mb-0 fw-bold">{{ $stats['pending_appointments'] }}</h3>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <span class="text-muted" style="font-size: 12px;">À confirmer</span>
+                    <i class="bi bi-arrow-right text-warning"></i>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card stat-card bg-success text-white">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="text-white-50 mb-1">Confirmés</h6>
-                        <h2 class="mb-0">{{ $stats['confirmed_appointments'] }}</h2>
+    <div class="col-xl-3 col-md-6 col-sm-6">
+        <div class="card stat-card success">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="stat-icon bg-success bg-opacity-10 text-success me-2">
+                        <i class="bi bi-check-circle"></i>
                     </div>
-                    <i class="bi bi-check-circle fs-1 text-white-50"></i>
+                    <div class="flex-grow-1">
+                        <p class="text-muted mb-0 small fw-semibold" style="font-size: 11px;">CONFIRMÉS</p>
+                        <h3 class="mb-0 fw-bold">{{ $stats['confirmed_appointments'] }}</h3>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <span class="text-muted" style="font-size: 12px;">Validés</span>
+                    <i class="bi bi-arrow-right text-success"></i>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card stat-card bg-info text-white">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="text-white-50 mb-1">Total Patients</h6>
-                        <h2 class="mb-0">{{ $stats['total_patients'] }}</h2>
+    <div class="col-xl-3 col-md-6 col-sm-6">
+        <div class="card stat-card danger">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="stat-icon bg-info bg-opacity-10 text-info me-2">
+                        <i class="bi bi-people"></i>
                     </div>
-                    <i class="bi bi-people fs-1 text-white-50"></i>
+                    <div class="flex-grow-1">
+                        <p class="text-muted mb-0 small fw-semibold" style="font-size: 11px;">PATIENTS</p>
+                        <h3 class="mb-0 fw-bold">{{ $stats['total_patients'] }}</h3>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <span class="text-muted" style="font-size: 12px;">Enregistrés</span>
+                    <i class="bi bi-arrow-right text-info"></i>
                 </div>
             </div>
         </div>
@@ -266,7 +290,7 @@
                             <div>
                                 <strong>{{ $patient->full_name }}</strong>
                                 <br>
-                                <small class="text-muted">{{ $patient->created_at->diffForHumans() }}</small>
+                                <small class="text-muted">{{ $patient->created_at ? $patient->created_at->diffForHumans() : 'Récemment' }}</small>
                             </div>
                         </div>
                     @endforeach

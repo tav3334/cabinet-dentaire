@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
+use App\Models\Patient;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class AppointmentAdminController extends Controller
@@ -36,6 +38,35 @@ class AppointmentAdminController extends Controller
                              ->paginate(15);
 
         return view('admin.appointments.index', compact('appointments'));
+    }
+
+    public function create()
+    {
+        $patients = Patient::orderBy('first_name')->get();
+        $services = Service::all();
+        return view('admin.appointments.create', compact('patients', 'services'));
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'patient_id' => 'required|exists:patients,id',
+            'service_id' => 'required|exists:services,id',
+            'appointment_date' => 'required|date|after_or_equal:today',
+            'appointment_time' => 'required',
+            'duration' => 'nullable|integer|min:15',
+            'message' => 'nullable|string',
+            'status' => 'required|in:pending,confirmed,canceled',
+        ]);
+
+        // Récupérer le patient pour remplir name et phone
+        $patient = Patient::findOrFail($validated['patient_id']);
+        $validated['name'] = $patient->full_name;
+        $validated['phone'] = $patient->phone;
+
+        Appointment::create($validated);
+
+        return redirect()->route('admin.appointments.index')->with('success', 'Rendez-vous créé avec succès.');
     }
 
     public function show($id)

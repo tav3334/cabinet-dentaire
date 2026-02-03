@@ -60,7 +60,7 @@
                 @endif
                 <li class="list-group-item d-flex justify-content-between">
                     <span><i class="bi bi-calendar-plus me-2 text-muted"></i>Inscrit le</span>
-                    <span>{{ $patient->created_at->format('d/m/Y') }}</span>
+                    <span>{{ $patient->created_at ? $patient->created_at->format('d/m/Y') : '-' }}</span>
                 </li>
             </ul>
         </div>

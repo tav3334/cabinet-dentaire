@@ -8,11 +8,11 @@ use App\Models\Service;
 
 class AppointmentController extends Controller
 {
-    public function create()
-    {
-        $services = Service::all();
-        return view('appointments.create', compact('services'));
-    }
+   public function create()
+{
+    $services = Service::all(); // Ajoutez cette ligne
+    return view('appointments.create', compact('services'));
+}
 
     public function store(Request $request)
     {

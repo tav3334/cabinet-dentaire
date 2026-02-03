@@ -47,6 +47,10 @@
                                     <span class="text-muted">{{ Str::limit($service->description, 100) }}</span>
                                 </td>
                                 <td class="text-end">
+                                    <a href="{{ route('admin.services.show', $service) }}"
+                                       class="btn btn-sm btn-outline-info" title="Voir">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
                                     <a href="{{ route('admin.services.edit', $service) }}"
                                        class="btn btn-sm btn-outline-primary" title="Modifier">
                                         <i class="bi bi-pencil"></i>

@@ -43,6 +43,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     // Gestion des rendez-vous
     Route::get('/appointments', [AppointmentAdminController::class, 'index'])->name('appointments.index');
+    Route::get('/appointments/create', [AppointmentAdminController::class, 'create'])->name('appointments.create');
+    Route::post('/appointments', [AppointmentAdminController::class, 'store'])->name('appointments.store');
     Route::get('/appointments/{id}', [AppointmentAdminController::class, 'show'])->name('appointments.show');
     Route::patch('/appointments/{id}/status', [AppointmentAdminController::class, 'updateStatus'])->name('appointments.updateStatus');
     Route::delete('/appointments/{id}', [AppointmentAdminController::class, 'destroy'])->name('appointments.destroy');
