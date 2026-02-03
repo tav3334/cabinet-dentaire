@@ -19,6 +19,9 @@
                 @endif
 
                 <div class="d-flex justify-content-center gap-2 mb-3">
+                    <a href="{{ route('admin.patients.medical-record', $patient) }}" class="btn btn-success">
+                        <i class="bi bi-file-medical me-1"></i>Dossier Médical
+                    </a>
                     <a href="{{ route('admin.patients.edit', $patient) }}" class="btn btn-outline-primary">
                         <i class="bi bi-pencil me-1"></i>Modifier
                     </a>

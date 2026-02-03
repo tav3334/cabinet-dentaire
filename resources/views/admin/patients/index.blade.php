@@ -75,7 +75,7 @@
                                 <td>
                                     <span class="badge bg-info">{{ $patient->appointments_count }}</span>
                                 </td>
-                                <td>{{ $patient->created_at->format('d/m/Y') }}</td>
+                                <td>{{ $patient->created_at ? $patient->created_at->format('d/m/Y') : '-' }}</td>
                                 <td class="text-end">
                                     <a href="{{ route('admin.patients.show', $patient) }}"
                                        class="btn btn-sm btn-outline-info" title="Voir">

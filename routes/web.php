@@ -6,6 +6,9 @@ use App\Http\Controllers\Admin\AppointmentAdminController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\TreatmentController;
+use App\Http\Controllers\Admin\ConsultationController;
+use App\Http\Controllers\Admin\MedicalFileController;
 use App\Http\Controllers\ServiceFrontController;
 use App\Http\Controllers\AppointmentController;
 
@@ -48,7 +51,18 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     // Gestion des patients
     Route::resource('patients', PatientController::class);
+    Route::get('/patients/{patient}/medical-record', [PatientController::class, 'medicalRecord'])->name('patients.medical-record');
 
     // Gestion des services
     Route::resource('services', ServiceController::class);
+
+    // Gestion des traitements
+    Route::resource('treatments', TreatmentController::class);
+
+    // Gestion des consultations
+    Route::resource('consultations', ConsultationController::class);
+
+    // Gestion des fichiers médicaux
+    Route::resource('medical-files', MedicalFileController::class);
+    Route::get('/medical-files/{medicalFile}/download', [MedicalFileController::class, 'download'])->name('medical-files.download');
 });

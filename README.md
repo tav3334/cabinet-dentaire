@@ -1,59 +1,369 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🦷 Cabinet Dentaire - Système de Gestion
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Application web complète pour la gestion d'un cabinet dentaire, développée avec Laravel 12.
 
-## About Laravel
+## 🌟 Fonctionnalités Principales
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 👥 Gestion des Patients
+- Fiche complète du patient (informations personnelles, médicales)
+- Historique médical et allergies
+- Recherche et filtrage
+- Dossier médical centralisé
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 📅 Gestion des Rendez-vous
+- Prise de rendez-vous en ligne (formulaire public)
+- Tableau de bord admin avec gestion complète
+- Statuts: En attente, Confirmé, Annulé
+- Soft delete avec possibilité de restauration
+- Notifications par email
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🦷 Gestion des Traitements
+- Suivi détaillé des traitements dentaires
+- 10 catégories de soins (préventif, restauration, chirurgie, etc.)
+- Suivi du nombre de séances
+- Gestion des coûts (estimé/réel)
+- Progression automatique en pourcentage
 
-## Learning Laravel
+### 📋 Consultations Médicales
+- Fiches de consultation complètes
+- Motif, examen clinique, diagnostic
+- Plan de traitement et prescriptions
+- Recommandations et suivi
+- Schéma dentaire (JSON)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 📁 Fichiers Médicaux
+- Upload de radiographies, documents, ordonnances
+- Types: Radiographie, Scanner, Photo, Document, etc.
+- Stockage sécurisé
+- Téléchargement et prévisualisation
+- Max 10MB par fichier
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🏥 Services
+- Catalogue des services offerts
+- Descriptions et images
+- Attribution aux rendez-vous
 
-## Laravel Sponsors
+### 📊 Tableau de Bord Admin
+- Statistiques en temps réel
+- Rendez-vous du jour et à venir
+- Graphiques mensuels
+- Patients récents
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 🔐 Authentification & Sécurité
+- Système d'authentification complet (Laravel Breeze)
+- Rôles utilisateurs (Admin/User)
+- Middleware de protection
+- Vérification d'email
 
-### Premium Partners
+## 🛠️ Technologies Utilisées
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+- **Framework:** Laravel 12
+- **Base de données:** MySQL / SQLite
+- **Frontend:**
+  - Tailwind CSS
+  - Alpine.js
+  - Blade Templates
+- **Build:** Vite
+- **Tests:** Pest PHP
+- **Email:** Configuration SMTP
 
-## Contributing
+## 📦 Installation
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Prérequis
+- PHP >= 8.2
+- Composer
+- Node.js & NPM
+- MySQL ou SQLite
 
-## Code of Conduct
+### Étapes d'installation
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. **Cloner le projet**
+```bash
+git clone <repository-url>
+cd cabinet-dentaire
+```
 
-## Security Vulnerabilities
+2. **Installer les dépendances PHP**
+```bash
+composer install
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. **Installer les dépendances JavaScript**
+```bash
+npm install
+```
 
-## License
+4. **Configurer l'environnement**
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. **Configurer la base de données**
+Éditer le fichier `.env`:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=cabinet_dentaire
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+6. **Exécuter les migrations**
+```bash
+php artisan migrate
+```
+
+7. **Créer le lien symbolique pour le storage**
+```bash
+php artisan storage:link
+```
+
+8. **Compiler les assets**
+```bash
+npm run dev
+```
+ou pour la production:
+```bash
+npm run build
+```
+
+9. **Démarrer le serveur**
+```bash
+php artisan serve
+```
+
+L'application sera accessible à: `http://localhost:8000`
+
+## 👤 Créer un Compte Admin
+
+Pour créer un administrateur, exécutez dans Tinker:
+
+```bash
+php artisan tinker
+```
+
+Puis:
+```php
+$user = new App\Models\User();
+$user->name = 'Admin';
+$user->email = 'admin@cabinet-dentaire.com';
+$user->password = bcrypt('password');
+$user->role = 'admin';
+$user->email_verified_at = now();
+$user->save();
+```
+
+## 📂 Structure du Projet
+
+```
+cabinet-dentaire/
+├── app/
+│   ├── Http/Controllers/Admin/    # Contrôleurs admin
+│   ├── Models/                    # Modèles Eloquent
+│   ├── Mail/                      # Classes email
+│   └── Http/Middleware/           # Middleware
+├── database/
+│   ├── migrations/                # Migrations
+│   └── seeders/                   # Seeders
+├── resources/
+│   ├── views/                     # Vues Blade
+│   └── js/                        # JavaScript
+├── routes/
+│   ├── web.php                    # Routes web
+│   └── auth.php                   # Routes auth
+├── storage/
+│   └── app/public/medical-files/  # Fichiers médicaux
+└── public/                        # Assets publics
+```
+
+## 🗄️ Base de Données
+
+### Tables Principales
+
+- `users` - Utilisateurs et administrateurs
+- `patients` - Patients du cabinet
+- `appointments` - Rendez-vous
+- `services` - Services offerts
+- `treatments` - Traitements dentaires
+- `consultations` - Fiches de consultation
+- `medical_files` - Documents médicaux
+- `settings` - Paramètres de l'application
+
+## 🔗 Routes Principales
+
+### Public
+- `/` - Page d'accueil
+- `/services` - Catalogue des services
+- `/rendez-vous` - Formulaire de prise de RDV
+
+### Admin (Auth + Admin middleware)
+- `/admin` - Dashboard
+- `/admin/patients` - Gestion patients
+- `/admin/patients/{id}/medical-record` - Dossier médical
+- `/admin/appointments` - Gestion rendez-vous
+- `/admin/treatments` - Gestion traitements
+- `/admin/consultations` - Gestion consultations
+- `/admin/medical-files` - Gestion fichiers
+- `/admin/services` - Gestion services
+
+### Authentification
+- `/login` - Connexion
+- `/register` - Inscription
+- `/forgot-password` - Mot de passe oublié
+
+## ⚙️ Configuration
+
+### Email
+Configurer dans `.env`:
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=your_username
+MAIL_PASSWORD=your_password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=noreply@cabinet-dentaire.com
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+### Storage
+Les fichiers médicaux sont stockés dans `storage/app/public/medical-files/`
+
+N'oubliez pas de créer le lien symbolique:
+```bash
+php artisan storage:link
+```
+
+## 🧪 Tests
+
+Exécuter les tests:
+```bash
+php artisan test
+```
+
+ou avec Pest:
+```bash
+./vendor/bin/pest
+```
+
+## 📝 Utilisation
+
+### Pour l'Admin
+
+1. **Créer un patient**
+   - Menu Patients > Nouveau patient
+   - Remplir les informations
+
+2. **Créer un rendez-vous**
+   - Menu Rendez-vous > Nouveau RDV
+   - Sélectionner patient et service
+
+3. **Documenter une consultation**
+   - Patient > Dossier médical > Nouvelle consultation
+   - Remplir la fiche de consultation
+
+4. **Ajouter un traitement**
+   - Patient > Dossier médical > Nouveau traitement
+   - Définir le plan de traitement
+
+5. **Uploader des fichiers**
+   - Patient > Dossier médical > Ajouter fichier
+   - Radiographies, ordonnances, etc.
+
+### Pour les Patients (Public)
+
+1. Aller sur `/rendez-vous`
+2. Remplir le formulaire de demande
+3. Recevoir un email de confirmation
+4. L'admin gérera le statut du RDV
+
+## 🎨 Personnalisation
+
+### Couleurs et Styles
+Modifier `tailwind.config.js` et les fichiers CSS dans `resources/css/`
+
+### Logo et Images
+Placer vos images dans `public/images/`
+
+### Emails
+Modifier les templates dans `resources/views/emails/`
+
+## 🔒 Sécurité
+
+- Authentification Laravel Breeze
+- Middleware Admin pour les routes admin
+- CSRF Protection
+- Validation des formulaires
+- Stockage sécurisé des fichiers
+- Hash des mots de passe (bcrypt)
+
+## 📱 Responsive Design
+
+L'application est entièrement responsive et fonctionne sur:
+- Desktop
+- Tablette
+- Mobile
+
+## 🚀 Déploiement
+
+### Production
+
+1. Configurer `.env` pour la production
+2. Compiler les assets:
+```bash
+npm run build
+```
+
+3. Optimiser l'application:
+```bash
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+```
+
+4. Configurer le serveur web (Apache/Nginx)
+5. Pointer le document root vers `/public`
+
+## 🐛 Dépannage
+
+### Erreur 500
+- Vérifier les logs: `storage/logs/laravel.log`
+- Vérifier les permissions: `storage/` et `bootstrap/cache/`
+
+### Assets non chargés
+- Exécuter `npm run build`
+- Vérifier `public/build/`
+
+### Fichiers non uploadés
+- Vérifier `php artisan storage:link`
+- Vérifier les permissions de `storage/app/public/`
+
+## 📄 Licence
+
+Ce projet est sous licence MIT.
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues! N'hésitez pas à:
+1. Fork le projet
+2. Créer une branche (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Commit vos changements (`git commit -m 'Ajout nouvelle fonctionnalité'`)
+4. Push vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrir une Pull Request
+
+## 📞 Support
+
+Pour toute question ou assistance:
+- Consulter la documentation Laravel: https://laravel.com/docs
+- Consulter le fichier `NOUVELLES_FONCTIONNALITES.md`
+
+## 📊 Version
+
+**Version actuelle:** 2.0
+**Dernière mise à jour:** Février 2026
+
+---
+
+Développé avec ❤️ pour la gestion moderne des cabinets dentaires

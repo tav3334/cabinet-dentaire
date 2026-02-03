@@ -66,6 +66,36 @@ class PatientController extends Controller
         return view('admin.patients.show', compact('patient'));
     }
 
+    public function medicalRecord(Patient $patient)
+    {
+        $patient->load([
+            'appointments' => function($query) {
+                $query->with('service')->orderBy('appointment_date', 'desc')->limit(10);
+            },
+            'treatments' => function($query) {
+                $query->orderBy('created_at', 'desc');
+            },
+            'consultations' => function($query) {
+                $query->with('practitioner')->orderBy('consultation_date', 'desc');
+            },
+            'medicalFiles' => function($query) {
+                $query->orderBy('document_date', 'desc');
+            }
+        ]);
+
+        // Statistiques
+        $stats = [
+            'total_appointments' => $patient->appointments()->count(),
+            'total_treatments' => $patient->treatments()->count(),
+            'active_treatments' => $patient->treatments()->whereIn('status', ['planned', 'in_progress'])->count(),
+            'completed_treatments' => $patient->treatments()->where('status', 'completed')->count(),
+            'total_consultations' => $patient->consultations()->count(),
+            'total_files' => $patient->medicalFiles()->count(),
+        ];
+
+        return view('admin.patients.medical-record', compact('patient', 'stats'));
+    }
+
     public function edit(Patient $patient)
     {
         return view('admin.patients.edit', compact('patient'));
